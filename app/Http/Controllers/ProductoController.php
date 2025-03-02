@@ -12,7 +12,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        return response()->json(Producto::all());
+        $productos = Producto::paginate(3);
+        return view('productos', compact('productos'));
     }
 
     /**
