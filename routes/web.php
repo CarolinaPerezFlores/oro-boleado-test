@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Middleware\AuthMiddleware;
 
@@ -20,3 +21,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+Route::get('/upload', [ImageUploadController::class, 'showForm'])->name('image.form');
+Route::post('/upload', [ImageUploadController::class, 'upload'])->name('image.upload');
