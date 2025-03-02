@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProductCreated;
 use App\Models\Producto;
 use App\Models\User;
 use App\Notifications\NewProductNotification;
@@ -26,11 +27,8 @@ class ProductController extends Controller
 
         $product = Producto::create($request->all());
 
-        // Notificar a todos los usuarios registrados
-        $users = User::all();
-        foreach ($users as $user) {
-            $user->notify(new NewProductNotification($product));
-        }
+        // Disparar el evento
+        event(new ProductCreated($product));
 
         return response()->json($product, 201);
     }
