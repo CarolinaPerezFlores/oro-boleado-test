@@ -68,4 +68,15 @@ class ProductController extends Controller
 
         return response()->json(['message' => 'Producto eliminado'], 200);
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $products = Producto::where('nombre', 'like', "%$query%")
+                            ->orWhere('descripcion', 'like', "%$query%")
+                            ->get();
+
+        return response()->json($products);
+    }
 }
