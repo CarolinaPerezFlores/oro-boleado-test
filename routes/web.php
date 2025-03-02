@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Middleware\AuthMiddleware;
 
 Route::middleware(AuthMiddleware::class)->group(function () {
-    Route::get('/admin', function () { return view('admin');});
+    Route::get('/dashboard', function () { return view('dashboard');});
 });
 Route::get('/', function () { return view('home');});
 
