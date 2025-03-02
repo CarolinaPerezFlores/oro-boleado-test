@@ -64,4 +64,9 @@ class ProductoController extends Controller
         $producto->delete();
         return response()->json(['message' => 'Producto eliminado correctamente']);
     }
+
+    public function getProductsGReaterThanHundred() 
+    {
+        return response()->json(Producto::where('precio','>', 100)->get());
+    }
 }
